@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div>
       <MyNavBar title="Strivestaurant" />
-      <Home />
+      <Home newTitle={"NewTitle"} newPayoff={"NewPayoff"}/>
     </div>
   )
 }

@@ -69,7 +69,7 @@ class Reservations extends Component {
 
         return (
             <>
-                <h3>RESERVATIONS</h3>
+                <h3>{this.props.header ? this.props.header : "Reservations"}</h3>
                 {/* conditional rendering */}
                 {
                     this.state.isLoading &&
