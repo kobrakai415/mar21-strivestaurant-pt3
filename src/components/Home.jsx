@@ -1,5 +1,5 @@
 import React from 'react'
-import { Carousel, Col, Container, Row, Alert } from 'react-bootstrap'
+import { Carousel, Col, Container, Row } from 'react-bootstrap'
 import items from '../data/menu.json'
 import DishComments from './DishComments'
 import ReservationForm from './ReservationForm'
@@ -20,8 +20,6 @@ class Home extends React.Component {
 
     state = {
         selectedDish: items[0], // we always need to provide an initial state for our component
-        show: true,
-        header: "Header"
     }
 
     // the state object in a react component is READ-ONLY
@@ -29,22 +27,15 @@ class Home extends React.Component {
 
     // the parameter you pass to setState will always be an object
     // that object will be MERGED into the current state
-    showForm = (e) => {
-        this.state.show ? this.setState({ show: false }) : this.setState({ show: true })
-
-    }
-
-
 
     render() { // render is the ONLY REQUIRED method in a class component
-        console.log(this.state.selectedDish)
-        console.log(this.checkComments)
+        console.log(this.props)
         return (
             <Container>
                 {/* <div class="container" /> */}
                 <Row className="justify-content-center mt-3">
                     <Col xs={12} md={8}>
-                        <Reservations header={this.state.header} />
+                        <Reservations />
                     </Col>
                 </Row>
                 <Row className="justify-content-center mt-3">
@@ -53,8 +44,8 @@ class Home extends React.Component {
                                 COL CONTENT
                             </div>
                         */}
-                        <h1>{this.props.newTitle ? this.props.newTitle : "Welcome to Strivestaurant"} </h1>
-                        <p>{this.props.newPayoff ? this.props.newPayoff : "The best pasta dishes you can find on the web!"}</p>
+                        <h1>Welcome to Strivestaurant</h1>
+                        <p>The best pasta dishes you can find on the web!</p>
                         <Carousel>
                             {
                                 // every time you do a .map in react you'll need to
@@ -84,18 +75,12 @@ class Home extends React.Component {
                 </Row>
                 <Row className="justify-content-center mt-3">
                     <Col xs={12} md={8}>
-                        {this.state.selectedDish.name !== "Amatriciana" && <DishComments dish={this.state.selectedDish} marginTop={0} />}
+                        <DishComments dish={this.state.selectedDish} marginTop={0} />
                     </Col>
                 </Row>
                 <Row className="justify-content-center mt-3">
                     <Col xs={12} md={8}>
-                        <h2 onClick={(e) => this.showForm(e)}>Click to Book your table NOW!</h2>
-                        {this.state.show && <ReservationForm />}
-                        {this.state.selectedDish.comments.some(comment => {
-                            return comment.rating < 5 ? true : false }) ? <Alert key="key1" variant="danger">
-                                Dish has ratings of less than 5!
-                        </Alert> : <ReservationForm />
-                        }
+                        <ReservationForm />
                     </Col>
                 </Row>
             </Container>
