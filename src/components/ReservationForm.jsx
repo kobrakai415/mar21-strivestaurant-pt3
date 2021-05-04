@@ -21,7 +21,9 @@ class ReservationForm extends React.Component {
             smoking: false,
             dateTime: '',
             specialRequests: '',
-        }
+        },
+       
+
     }
 
     submitReservation = async (e) => {
@@ -94,12 +96,14 @@ class ReservationForm extends React.Component {
     // user.propertyToAccess // undefined
     // user[propertyToAccess] // 'Teacher'
 
+  
+
     render() {
         console.log('RESERVATIONFORM GOT RE-RENDERED')
         return (
             // React Fragment, just for wrap multiple elements out of my return statement
             <>
-                <h2>Book your table NOW!</h2>
+                
                 <Form onSubmit={this.submitReservation}>
                     <Form.Group>
                         <Form.Label>Name</Form.Label>
